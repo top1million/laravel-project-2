@@ -12,11 +12,11 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"> {{-- import css/tailwind.css --}}
-
-    <!-- Scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    {{-- import css/tailwind.css --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link href="/css/style.css" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -81,6 +81,6 @@
   {{-- bootstrap jquery --}}
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   {{-- bootstrap js --}}
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <div class="wrapper create-car container text-center">
     <h1>create a new car</h1>
 
-    <form action="/cars" method="post">
+    <form action="/cars" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container my-5"> <label for="name">car model</label>
             <input type="text" id="name" name="model">
@@ -15,6 +15,12 @@
                 <option value="yellow">yellow</option>
                 <option value="blue">blue</option>
             </select>
+        </div>
+        <div class="image">
+            <label>
+                <h4>Add image</h4>
+            </label>
+            <input type="file" class="form-control" required name="image">
         </div>
         <div class="container my-5"><label for="base">car price</label>
             <input type="text" placeholder="price">

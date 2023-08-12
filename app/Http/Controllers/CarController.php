@@ -38,9 +38,14 @@ class CarController extends Controller
         $car->model = request('model');
         $car->color = request('color');
         $car->price = (int) request('price');
+        $file = request('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $file->move('img', $filename);
+        $car->image = $filename;        
         error_log ($car);
         $car->save();
-        return redirect('/cars');
+        return redirect('/');
     }
     public function destroy($id)
     {

@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\CarController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 // import auth
 use Illuminate\Support\Facades\Auth;
+// import middleware auth
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,15 +19,12 @@ use Illuminate\Support\Facades\Auth;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/cars', [CarController::class, 'index']);
+
+Route::get('/', [CarController::class, 'index']);
 Route::get('/cars/create', [CarController::class, 'create']);
 Route::get('/cars/{id}', [CarController::class, 'show']);
-
 Route::post('/cars', [CarController::class, 'store']);
-Route::delete('/cars/{id}', [CarController::class, 'destroy']);
+Route::delete('/cars/{id}', [CarController::class, 'destroy'])->middleware('auth');
 
 Auth::routes();
 

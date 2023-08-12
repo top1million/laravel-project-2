@@ -1,0 +1,30 @@
+body {
+    background-image: url("/img/car-dealership.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
+.main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.3;
+}
+
+.main .btn {
+    position: absolute;
+    bottom: 5%;
+    z-index: 500;
+}
+nav {
+    z-index: 500;
+}
+.main img {
+    object-fit: contain;
+}
+
