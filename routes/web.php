@@ -24,8 +24,8 @@ Route::get('/', [CarController::class, 'index']);
 Route::get('/cars/create', [CarController::class, 'create']);
 Route::get('/cars/{id}', [CarController::class, 'show']);
 Route::post('/cars', [CarController::class, 'store']);
-Route::delete('/cars/{id}', [CarController::class, 'destroy'])->middleware('auth');
-
+Route::delete('/cars/{id}', [CarController::class, 'purchase'])->middleware('auth');
+Route::get('/view_cars/{id}', [CarController::class, 'view_cars'])->middleware('auth');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

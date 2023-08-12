@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\User;
+use App\Models\car_user;
 class CarController extends Controller
 {
 // Route::get( '/cars', [CarController::class, 'index']);
@@ -24,8 +25,15 @@ class CarController extends Controller
     public function show($id)
     {
         $car = Car::find($id);
+        $is_sold = car_user::where('car_id', $id)->get();
+        if($is_sold->count() == 0){
+            $is_sold = false;
+        }else{
+            $is_sold = true;
+        }
         return view('cars.show', [
-            'car' => $car
+            'car' => $car,
+            'is_sold' => $is_sold
         ]);
     }
     public function create()
@@ -47,13 +55,28 @@ class CarController extends Controller
         $car->save();
         return redirect('/');
     }
-    public function destroy($id)
+    public function purchase($id)
     {
-        $car = Car::findOrFail($id);
-        $car->delete();
-        return redirect('/cars');
+        $car = Car::find($id);
+        $user = User::find(auth()->user()->id);
+        $car_user = new car_user();
+        $car_user->car_id = $car->id;
+        $car_user->user_id = $user->id;
+        $car_user->save();
+        return redirect('/');
     }
 
-
+    public function view_cars($id)
+    {
+        $user_car = car_user::where('user_id', $id)->get();
+        $cars = [];
+        foreach ($user_car as $car) {
+            $cars[] = Car::find($car->car_id);
+        }
+        return view('cars.view_cars', [
+            'cars' => $cars
+        ]);
+        
+    }
 
 }

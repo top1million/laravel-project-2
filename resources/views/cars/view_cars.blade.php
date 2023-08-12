@@ -7,7 +7,7 @@
 
     <div class="text-center text-white ">
         <h1 class="mssg">{{ session('mssg') }} </h1>
-        @if ($cars->count() != 0)
+
 
         <div id="carouselExample" class="owl-carousel">
             @foreach ($cars as $car)
@@ -22,12 +22,7 @@
 
         </div>
 
-        @endif
 
-
-        <a href="/cars/create">
-            <h1 class="text-center zz btn btn-dark p-3">add a car</h1>
-        </a>
     </div>
 
 

@@ -3,7 +3,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    max-height: 100%;
+    z-index: -1;
 }
 .main::after {
     content: "";
@@ -14,9 +15,10 @@ body {
     width: 100%;
     background-color: black;
     opacity: 0.3;
+    z-index: -1;
 }
 
-.main .btn {
+.zz .btn {
     position: absolute;
     bottom: 5%;
     z-index: 500;
@@ -24,7 +26,25 @@ body {
 nav {
     z-index: 500;
 }
-.main img {
-    object-fit: contain;
+.form-control {
+    max-width: 250px;
 }
 
+
+.item {
+    margin: auto;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  label{
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  div{
+    margin: 0 auto;
+  }
