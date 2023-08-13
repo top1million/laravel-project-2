@@ -20,7 +20,7 @@ class CarController extends Controller
 // Route::put( '/cars/{id}', [CarController::class, 'update']);
     public function index()
     {
-        $cars = Car::orderby('id', 'desc')->get();
+        $cars = Car::orderby('id')->get();
         error_log($cars);
         return view('cars.index', ['cars' => $cars]);
 
@@ -73,6 +73,7 @@ class CarController extends Controller
         // create an event for the car purchase
         Mail::to($user->email)->send(new purchased($user));
         CarEvents::dispatch($car);
+        return redirect('/');
     }
 
     public function view_cars($id)

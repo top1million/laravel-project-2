@@ -20,8 +20,8 @@ class CarListner
      */
     public function handle(object $event): void
     {
-        error_log('Car created Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************');
-        echo 'Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************Car created lorem ipsum ***********************************************';
-        redirect('/');
+        error_log('Car created');
+//        redirect to home
+
     }
 }
