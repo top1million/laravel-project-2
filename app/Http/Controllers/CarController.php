@@ -42,6 +42,12 @@ class CarController extends Controller
     }
     public function store()
     {
+        $validated = request()->validate([
+            'model' => 'required',
+            'color' => 'required',
+            'price' => 'required',
+            'image' => 'required'
+        ]);
         $car = new Car();
         $car->model = request('model');
         $car->color = request('color');
@@ -50,7 +56,7 @@ class CarController extends Controller
         $extension = $file->getClientOriginalExtension();
         $filename = time() . '.' . $extension;
         $file->move('img', $filename);
-        $car->image = $filename;        
+        $car->image = $filename;
         error_log ($car);
         $car->save();
         return redirect('/');
@@ -73,10 +79,15 @@ class CarController extends Controller
         foreach ($user_car as $car) {
             $cars[] = Car::find($car->car_id);
         }
+        $is_empty = false;
+        if(count($cars) == 0){
+            $is_empty = true;
+        }
         return view('cars.view_cars', [
-            'cars' => $cars
+            'cars' => $cars,
+            'is_empty' => $is_empty
         ]);
-        
+
     }
 
 }

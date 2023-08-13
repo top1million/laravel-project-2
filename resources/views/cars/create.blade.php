@@ -2,7 +2,15 @@
 @section('content')
 <div class="wrapper create-car container text-center main text-white">
     <h1>create a new car</h1>
-
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form action="/cars" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container my-5"> <label for="name">car model</label>
@@ -20,9 +28,9 @@
         </div>
         <div class="image">
             <label for="x">
-                <h4 >Add image</h4>
+                <h4>Add image</h4>
             </label>
-            <input  id="x" type="file" class="form-control mx-auto" required name="image">
+            <input id="x" type="file" class="form-control mx-auto" required name="image">
         </div>
         <div class="container my-5"><label for="base">car price</label>
             <input name="price" type="text" placeholder="price">

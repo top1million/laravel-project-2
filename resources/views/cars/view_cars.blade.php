@@ -20,6 +20,9 @@
 
             @endforeach
 
+            @if ($is_empty)
+            <h1>you have no purchased cars</h1>
+            @endif
         </div>
 
 

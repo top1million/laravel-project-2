@@ -6,6 +6,7 @@ body {
     max-height: 100%;
     z-index: -1;
 }
+
 .main::after {
     content: "";
     position: absolute;
@@ -23,9 +24,11 @@ body {
     bottom: 5%;
     z-index: 500;
 }
+
 nav {
     z-index: 500;
 }
+
 .form-control {
     max-width: 250px;
 }
@@ -38,13 +41,23 @@ nav {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-  }
+}
 
-  label{
-    color: white;
+label {
+
     font-size: 20px;
     margin-right: 10px;
-  }
-  div{
+}
+
+div {
     margin: 0 auto;
-  }
+}
+
+.main img {
+    width: 500px;
+    height: 500px;
+}
+img {
+    width: 1000px;
+    height: 600px;
+}
