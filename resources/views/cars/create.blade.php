@@ -10,6 +10,7 @@
             @endforeach
         </ul>
     </div>
+
     @endif
     <form action="/cars" method="post" enctype="multipart/form-data">
         @csrf

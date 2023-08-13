@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', [CarController::class, 'index']);
-Route::get('/cars/create', [CarController::class, 'create']); // only if admin
+Route::get('/cars/create', [CarController::class, 'create'])->middleware(\App\Http\Middleware\checkAdmin::class); // only if admin
 Route::get('/cars/{id}', [CarController::class, 'show']);
-Route::post('/cars', [CarController::class, 'store']);
+Route::post('/cars', [CarController::class, 'store'])->middleware(\App\Http\Middleware\checkAdmin::class);
 Route::delete('/cars/{id}', [CarController::class, 'purchase'])->middleware('auth');
 Route::get('/view_cars/{id}', [CarController::class, 'view_cars'])->middleware('auth');
 Auth::routes();
