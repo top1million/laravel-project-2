@@ -31,10 +31,8 @@ class CarController extends Controller
 
     public function store(Validations $request)
     {
-        $validated = $request->validated();
-        //for each image in the request
+        $request->validated();
         $index = 0;
-
         $first_image = "";
         foreach ($request->file('images') as $file) {
             $extension = $file->getClientOriginalExtension();
@@ -80,6 +78,43 @@ class CarController extends Controller
 //        paginate every 2 cars
         $cars = Car::paginate(2);
         return view('cars.cards', ['cars' => $cars]);
+    }
+
+    public function edit($id)
+    {
+        $car = Car::find($id);
+        $images = $car->images;
+        return view('cars.edit', ['car' => $car], ['images' => $images]);
+    }
+
+    public function update(Validations $request, $id)
+    {
+        $request->validated();
+        $car = Car::find($id);
+        $car->update(['model' => $request->input('model'), 'color' => $request->input('color'), 'price' => $request->input('price')]);
+        return redirect('/cars/' . $car->id);
+    }
+
+    public function destroy($id)
+    {
+        $car = Car::find($id);
+        $images = $car->images;
+        $car_user = car_user::where('car_id', $id)->get();
+        foreach ($car_user as $car_user) {
+            $car_user->delete();
+        }
+        foreach ($images as $image) {
+            $image->delete();
+        }
+        $car->delete();
+        return redirect('/');
+    }
+
+    public function imagesDelete($id)
+    {
+        $image = Images::find($id);
+        $image->delete();
+        return response()->json(['success' => 'User Deleted Successfully!']);
     }
 
 }

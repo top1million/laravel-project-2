@@ -25,8 +25,11 @@
                 @else
                     <h1 class="text-danger d-inline">SOLD</h1>
                 @endif
-                <a href="/" class="btn btn-dark d-inline mx-5">Back</a>
-
+                <div class="container">
+                    <a href="/cars/{{$car->id}}/edit" class="btn btn-primary m-5 d-block">Edit</a>
+                    <a href="/cars/{{$car->id}}/delete" class="btn btn-danger m-5 d-block">Delete</a>
+                    <a href="/" class="btn btn-dark d-inline m-5 d-block">Back</a>
+                </div>
 
             </form>
 
