@@ -33,7 +33,9 @@
             <a href="/cars/create">
                 <h1 class="text-center zz btn btn-dark p-3">add a car</h1>
             </a>
-
+            <a href="/cards">
+                <h1 class="text-center zz btn btn-primary p-3 mx-3">Paginated</h1>
+            </a>
         </div>
 
 
