@@ -32,7 +32,7 @@
             <label for="x">
                 <h4>Add image</h4>
             </label>
-            <input id="x" type="file" class="form-control mx-auto" required name="image">
+            <input type="file" name="images[]" class="myfrm form-control mx-auto" multiple>
         </div>
         <div class="container my-5"><label for="base">car price</label>
             <input name="price" type="text" placeholder="price">

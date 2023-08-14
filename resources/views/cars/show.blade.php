@@ -9,7 +9,14 @@
             <h1> model : {{ $car->model }} </h1>
             <h1> color : {{ $car->color }} </h1>
             <h1> price : {{ $car->price }} </h1>
-            <img src="/img/{{$car->image}}" alt="asht">
+            @if($images->count() == 0)
+                <img src="/img/{{$car->image}}" alt="asht">
+                <br>
+            @else
+                @foreach($images as $img)
+                    <img src="/img/{{$img->image}}" alt="test">
+                @endforeach
+            @endif
             <form action="/cars/{{ $car->id }}/purchase" method="POST">
                 @csrf
                 @method('post')

@@ -25,7 +25,6 @@ class Validations extends FormRequest
             'model' => 'required',
             'color' => 'required',
             'price' => 'required',
-            'image' => 'required',
         ];
     }
     public function messages()
@@ -34,7 +33,6 @@ class Validations extends FormRequest
             'model.required' => 'model is required',
             'color.required' => 'color is required',
             'price.required' => 'price is required',
-            'image.required' => 'image is required',
         ];
     }
 }

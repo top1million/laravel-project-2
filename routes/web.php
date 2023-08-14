@@ -23,9 +23,10 @@ use App\Http\Middleware\CheckAdmin;
 
 //group middleware checkadmin
 Route::group(['middleware' => [ 'checkAdmin']], function () {
-    Route::get('/cars/create', [CarController::class, 'create']);
-    Route::post('/cars', [CarController::class, 'store']);
+
 });
+Route::get('/cars/create', [CarController::class, 'create']);
+Route::post('/cars', [CarController::class, 'store']);
 Route::get('/', [CarController::class, 'index']);
 Route::get('/cars/{id}', [CarController::class, 'show']);
 Route::post('/cars/{id}/purchase', [CarController::class, 'purchase'])->middleware('verified');

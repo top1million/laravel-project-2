@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\CarEvents;
 use App\Http\Models\Car;
 use App\Http\Models\car_user;
+use App\Http\Models\Images;
 use App\Http\Models\User;
 use App\Http\Requests\Validations;
 use App\Mail\purchased;
@@ -21,18 +22,32 @@ class CarController extends Controller
     public function show($id)
     {
         $car = Car::find($id);
+        $images = $car->images;
         $is_sold = car_user::where('car_id', $id)->get()->count() == 0 ? false : true;
-        return view('cars.show', ['car' => $car, 'is_sold' => $is_sold]);
+        return view('cars.show', ['car' => $car, 'is_sold' => $is_sold], ['images' => $images]);
     }
+
+//    function to accept request
 
     public function store(Validations $request)
     {
         $validated = $request->validated();
-        $file = request('image');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
-        $file->move('img', $filename);
-        Car::create(['model' => ['model'], 'color' => ['color'], 'price' => ['price'], 'image' => $filename]);
+        //for each image in the request
+        $index = 0;
+
+        $first_image = "";
+        foreach ($request->file('images') as $file) {
+            $extension = $file->getClientOriginalExtension();
+            $filename = $index . time() . '.' . $extension;
+            $file->move('img', $filename);
+            if ($index == 0) {
+                $first_image = $filename;
+                $car = Car::create(['model' => $request->input('model'), 'color' => $request->input('color'), 'price' => $request->input('price'), 'image' => $first_image]);
+            }
+            error_log($filename);
+            Images::create(['car_id' => $car->id, 'image' => $filename]);
+            $index++;
+        }
         return redirect('/');
     }
 
@@ -58,6 +73,7 @@ class CarController extends Controller
         $cars = $user->cars;
         return view('cars.view_cars', ['cars' => $cars]);
     }
+
     public function cards()
     {
         $cars = Car::orderby('id')->get();
