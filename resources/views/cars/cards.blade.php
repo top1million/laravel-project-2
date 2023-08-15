@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Laravel Pagination Demo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
+@extends('layouts.app')
+@section('content')
 <body>
 <div class="container mt-5 d-flex justify-content-center">
 
@@ -14,7 +7,7 @@
     {{--        <h1> color : {{ $car->color }} </h1>--}}
     {{--        <h1> price : {{ $car->price }} </h1>--}}
     {{--        <img src="/img/{{$car->image}}" alt="asht">--}}
-
+@if(isset($cars))
     @foreach($cars as $car)
         <div class="card m-5 text-primary" style="width: 18rem;">
             <img src="/img/{{$car->image}}" alt="asht">
@@ -33,5 +26,6 @@
 <div class="d-flex justify-content-center">
     {!! $cars->links() !!}
 </div>
+@endif
 </body>
-</html>
+@endsection

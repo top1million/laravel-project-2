@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth', 'checkAdmin']], function () {
     Route::get('/cars/{id}/images', [CarController::class, 'imagesDelete']);
 });
 
+//return redirect('/search?search=' . $search); add route with query
+
+Route::get('/search', [CarController::class, 'search'])->name('search');
 Route::get('/', [CarController::class, 'index']);
 Route::get('/cars/{id}', [CarController::class, 'show']);
 Route::post('/cars/{id}/purchase', [CarController::class, 'purchase'])->middleware('verified');

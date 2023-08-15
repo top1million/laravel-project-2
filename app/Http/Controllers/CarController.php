@@ -9,7 +9,9 @@ use App\Http\Models\Images;
 use App\Http\Models\User;
 use App\Http\Requests\Validations;
 use App\Mail\purchased;
+use http\Client\Request;
 use Illuminate\Support\Facades\Mail;
+
 
 class CarController extends Controller
 {
@@ -92,8 +94,9 @@ class CarController extends Controller
         $request->validated();
         $car = Car::find($id);
         $images = $car->images;
-        $car->update(['model' => $request->input('model'), 'color' => $request->input('color'), 'price' => $request->input('price') , 'image' => $images[0]->image]);
+        $car->update(['model' => $request->input('model'), 'color' => $request->input('color'), 'price' => $request->input('price'), 'image' => $images[0]->image]);
         if ($request->file('images')) {
+            $index = 0;
             foreach ($request->file('images') as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $filename = $index . time() . '.' . $extension;
@@ -130,5 +133,15 @@ class CarController extends Controller
             return response()->json(['success' => 'User Deleted Successfully!']);
         }
     }
+
+    public function search()
+    {
+        $request = request();
+        $search = request()->input('search');
+        $cars = Car::where('model', 'like', '%' . $search . '%')->paginate(2);
+        $cars->appends($request->all());
+        return view('cars.cards', ['cars' => $cars]);
+    }
+
 
 }
