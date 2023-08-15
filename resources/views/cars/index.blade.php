@@ -19,7 +19,7 @@
 
                         <div class="item" data-slide-index="">
                             <a class="test" href="/cars/{{ $car->id }}">
-                                <img class="img-fluid" src="/img/{{$car->image}}" alt="shit">
+                                <img class="img-fluid" src="/img/{{$car->image}}" alt="test">
                             </a>
                         </div>
 

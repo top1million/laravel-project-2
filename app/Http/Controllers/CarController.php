@@ -130,6 +130,8 @@ class CarController extends Controller
         if (request()->ajax()) {
             $image = Images::find($id);
             $image->delete();
+            $car = Car::find($image->car_id);
+            $car->update(['image' => $car->images[0]->image]);
             return response()->json(['success' => 'User Deleted Successfully!']);
         }
     }
