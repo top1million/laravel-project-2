@@ -7,6 +7,7 @@ use App\Http\Models\Car;
 use App\Http\Models\car_user;
 use App\Http\Models\Images;
 use App\Http\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\Validations;
 use App\Mail\purchased;
 use Illuminate\Support\Facades\Mail;
@@ -92,8 +93,17 @@ class CarController extends Controller
         $request->validated();
         $car = Car::find($id);
         $images = $car->images;
+        if ($request->input('ids')){
+            $ids = $request->input('ids');
+            error_log($ids);
+//            foreach ($ids as $id){
+//                $image = Images::find($id);
+//                $image->delete();
+//            }
+        }
         $car->update(['model' => $request->input('model'), 'color' => $request->input('color'), 'price' => $request->input('price') , 'image' => $images[0]->image]);
         if ($request->file('images')) {
+            $index = 0;
             foreach ($request->file('images') as $file) {
                 $extension = $file->getClientOriginalExtension();
                 $filename = $index . time() . '.' . $extension;
@@ -129,6 +139,17 @@ class CarController extends Controller
             $image->delete();
             return response()->json(['success' => 'User Deleted Successfully!']);
         }
+    }
+    public function imageDelete1(Request $request )
+    {
+        $ids = $request->input('ids');
+////        split , from ids and delete last index
+        $ids = explode(',' , $ids);
+        for($i = 0 ; $i < count($ids) - 1 ; $i++){
+            $image = Images::find($ids[$i]);
+            $image->delete();
+        }
+        return back();
     }
 
 }

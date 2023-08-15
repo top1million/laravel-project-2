@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="wrapper create-car container text-center main text-white">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <h1>edit car</h1>
         <div class="d-flex">
             @foreach($images as $img)
@@ -10,6 +11,13 @@
                 </div>
             @endforeach
         </div>
+        <form action="{{ route('imageDelete1')  }}" method="post">
+            @csrf
+            @method('POST')
+            <input type="hidden" id="carIds" name="ids" value="">
+            <button class="btn btn-primary p-3 buttonSave">Save</button>
+        </form>
+
         <form action="/cars/{{$car->id}}/update" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
@@ -59,6 +67,5 @@
         </form>
 
     </div>
-
 
 @endsection

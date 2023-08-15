@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth', 'checkAdmin']], function () {
     Route::post('/cars/{id}/update', [CarController::class, 'update']);
     Route::get('/cars/{id}/delete', [CarController::class, 'destroy']);
     Route::get('/cars/{id}/images', [CarController::class, 'imagesDelete']);
+    Route::post('/cars/images/delete', [CarController::class, 'imageDelete1'])->name('imageDelete1');
 });
 
 Route::get('/', [CarController::class, 'index']);
