@@ -23,8 +23,8 @@ use App\Http\Middleware\CheckAdmin;
 |
  */
 
-//group middleware checkadmin
-Route::group(['middleware' => ['checkAdmin']], function () {
+//group middleware  auth than checkadmin
+Route::group(['middleware' => ['auth', 'checkAdmin']], function () {
     Route::get('/cars/create', [CarController::class, 'create']);
     Route::post('/cars', [CarController::class, 'store']);
     Route::get('/cars/{id}/edit', [CarController::class, 'edit']);
@@ -39,6 +39,4 @@ Route::post('/cars/{id}/purchase', [CarController::class, 'purchase'])->middlewa
 Route::get('/view_cars/{id}', [CarController::class, 'view_cars'])->middleware('auth');
 Auth::routes(['verify' => true,]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Route::get('/cards', [CarController::class, 'cards']);
 Route::get('/cards', [CarController::class, 'cards']);

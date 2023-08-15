@@ -91,7 +91,18 @@ class CarController extends Controller
     {
         $request->validated();
         $car = Car::find($id);
-        $car->update(['model' => $request->input('model'), 'color' => $request->input('color'), 'price' => $request->input('price')]);
+        $images = $car->images;
+        $car->update(['model' => $request->input('model'), 'color' => $request->input('color'), 'price' => $request->input('price') , 'image' => $images[0]->image]);
+        if ($request->file('images')) {
+            foreach ($request->file('images') as $file) {
+                $extension = $file->getClientOriginalExtension();
+                $filename = $index . time() . '.' . $extension;
+                $file->move('img', $filename);
+                error_log($filename);
+                Images::create(['car_id' => $car->id, 'image' => $filename]);
+                $index++;
+            }
+        }
         return redirect('/cars/' . $car->id);
     }
 
@@ -112,9 +123,12 @@ class CarController extends Controller
 
     public function imagesDelete($id)
     {
-        $image = Images::find($id);
-        $image->delete();
-        return response()->json(['success' => 'User Deleted Successfully!']);
+//        ajax request
+        if (request()->ajax()) {
+            $image = Images::find($id);
+            $image->delete();
+            return response()->json(['success' => 'User Deleted Successfully!']);
+        }
     }
 
 }

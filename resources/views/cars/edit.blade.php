@@ -6,17 +6,10 @@
             @foreach($images as $img)
                 <div class="d-flex flex-column mx-auto my-5">
                     <img src="/img/{{$img->image}}" alt="test" style="width: 100px; height: 100px; border-radius: 50px">
-                    <button class="btn btn-danger .buttonCk">delete</button>
+                    <button id="{{$img->id}}" class="btn btn-danger buttonCk">delete</button>
                 </div>
             @endforeach
         </div>
-        <script>
-            $(document).ready(function () {
-                $('.buttonCk').click(function () {
-                    alert('are you sure you want to delete this image');
-                });
-            });
-        </script>
         <form action="/cars/{{$car->id}}/update" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
