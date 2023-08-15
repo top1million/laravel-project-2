@@ -23,6 +23,7 @@ export default defineConfig({
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
+            '@fortawesome/fontawesome-free/css/all.css': '@fortawesome/fontawesome-free/css/all.css',
         },
     },
 });

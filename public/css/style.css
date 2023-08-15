@@ -1,23 +1,30 @@
-body {
-    background-image: url("/img/car-dealership.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    max-height: 100vh;
-    z-index: -1;
+:root{
+    --primary: #6351ce;
+    --gery : #acadaf;
+    --secondary : #26413C;
+    --quaternary : #03120E;
 }
 
-.main::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    opacity: 0.3;
-    z-index: -1;
+nav{
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+.btn-style{
+    background-color: var(--secondary) !important;
+    color: white !important;
+    border: unset !important;
+}
+.btn-style:hover{
+    background-color: var(--quaternary) !important;
+    color: white !important;
+}
+.card-header{
+    background-color: var(--primary) !important;
+    color: white !important;
+    text-align: center;
+}
+.tea nav{
+    background-color:white !important;
 }
 
 .zz .btn {
@@ -26,14 +33,9 @@ body {
     z-index: 500;
 }
 
-nav {
-    z-index: 500;
-}
-
 .form-control {
     max-width: 250px;
 }
-
 
 .item {
     color: white;
@@ -65,4 +67,5 @@ img {
 .owl-nav span{
     font-size: 50px;
     margin : 0 20px;
+    color: var(--primary);
 }

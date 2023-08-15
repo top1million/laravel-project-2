@@ -16,6 +16,7 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+import '@fortawesome/fontawesome-free/css/all.css';
 app.component('example-component', ExampleComponent);
 
 /**

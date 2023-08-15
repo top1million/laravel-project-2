@@ -18,14 +18,25 @@
                 <a href="/cars/{{ $car->id }}" class="my-3 btn btn-primary">car page</a>
             </div>
         </div>
+
     @endforeach
 
     {{-- Pagination --}}
 
 </div>
-<div class="d-flex justify-content-center">
+
+<div class="d-flex justify-content-center bg-white tea">
     {!! $cars->links() !!}
 </div>
+<div class="text-center">
+    <a href="/cards">
+        <h1 class="text-center zz btn btn-primary p-3 mx-3 btn-style">Paginated</h1>
+    </a>
+</div>
+
+
 @endif
+
 </body>
+
 @endsection

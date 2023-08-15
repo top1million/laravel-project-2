@@ -1,3 +1,4 @@
-body{
-    background-color: red;
-}
+@import "@fortawesome/fontawesome-free/css/all.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
